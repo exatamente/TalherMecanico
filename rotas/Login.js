@@ -1,10 +1,15 @@
 import React, {Component} from 'react';
-import {View, Text, Button,TextInput, Image, StyleSheet} from 'react-native';
+import {Alert, View, Text, Button,TextInput, Image, StyleSheet} from 'react-native';
 import styles from '../stylesheets/loginStyle.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from "react-native-linear-gradient";
 
 class Login extends Component{
+    state = {
+        username: 'NULL',
+        password: 'NULL'
+    };
+
     render(){
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
@@ -14,15 +19,25 @@ class Login extends Component{
 
                     <Text style={styles.Title}> Iniciar Sessão: </Text>
 
-                    <TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} />
+                    <TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} onChangeText={(value) => this.setState({username: value})} />
 
-                    <TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={styles.Password} />
+                    <TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={styles.Password} onChangeText={(value) => this.setState({password: value})} />
                 </View>
                 <View style={styles.Button}>
                     <Button
                         title="Login"
                         color={'#eea849'}
-                        onPress={() => this.props.navigation.push('Home')}
+                        onPress={() =>
+                        {
+                            if((this.state.username == 'admin')  && (this.state.password == 'admin')){
+                                this.props.navigation.push('Home')
+                                return;
+                            }
+
+                            Alert.alert('Usuário ou Senha estão incorretos!');
+
+                        }
+                        }
                     />
                 </View>
             </View>
