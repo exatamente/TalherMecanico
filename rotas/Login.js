@@ -1,28 +1,32 @@
 import React, {Component} from 'react';
-import {View, Text, Button,TextInput, Image} from 'react-native';
+import {View, Text, Button,TextInput, Image, StyleSheet} from 'react-native';
+import styles from '../stylesheets/loginStyle.js'
+import Icon from 'react-native-vector-icons/FontAwesome';
+import LinearGradient from "react-native-linear-gradient";
 
 class Login extends Component{
     render(){
         return(
-            <View style={{
-                alignItems: 'center',
-                justifyContent: 'center',
-                marginTop: 50
-            }}>
+            <LinearGradient colors={['#e35d5b', '#e53935']}>
+            <View>
+                <View style={styles.inputSection}>
+                    <Image source={require('../img/logo.png')} />
 
-                <Image source={require('../img/logo.png')} />
-                <Text style={{marginBottom: 20, fontSize: 30, justifyContent: 'center'}}> Login </Text>
+                    <Text style={styles.Title}> Iniciar Sessão: </Text>
 
-                <TextInput key={'Usuario'} placeholder={'Usuário'} style={{marginBottom: 20, fontSize: 19, backgroundColor: '#ddd', borderWidth: 1.5, borderColor: 'blue', width: 250, alignItems: 'center' }} />
+                    <TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} />
 
-                <TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={{marginBottom: 20, fontSize: 19, backgroundColor: '#ddd', borderWidth: 1.5, borderColor: 'blue', width: 250, alignItems: 'center' }} />
-
-                <Button
-                    title="Login"
-                    onPress={() => this.props.navigation.push('Home')}
-                />
-
+                    <TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={styles.Password} />
+                </View>
+                <View style={styles.Button}>
+                    <Button
+                        title="Login"
+                        color={'#eea849'}
+                        onPress={() => this.props.navigation.push('Home')}
+                    />
+                </View>
             </View>
+            </LinearGradient>
         )
     }
 }
