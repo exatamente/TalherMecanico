@@ -39,7 +39,13 @@ class AddCar extends Component {
                     title="Send"
                     onPress={() => {
                         this.props.navigation.navigate('Home', {
-                            nome: this.state.nome,
+                            marca: this.state.marca,
+                            ano: this.state.ano,
+                            placa: this.state.placa,
+                            cor: this.state.cor,
+                            proprietario: this.state.proprietario,
+                            mecanico: this.state.mecanico,
+                            data: this.state.data
                         });
                     }}
                 />
