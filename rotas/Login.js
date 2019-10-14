@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {Alert, View, Text, Button,TextInput, Image, StyleSheet} from 'react-native';
 import styles from '../stylesheets/loginStyle.js'
-import Icon from 'react-native-vector-icons/FontAwesome';
 import LinearGradient from "react-native-linear-gradient";
 
 class Login extends Component{
     state = {
-        username: 'NULL',
-        password: 'NULL'
+        username: 'admin',
+        password: 'admin'
     };
 
     render(){
@@ -35,7 +34,6 @@ class Login extends Component{
                             }
 
                             Alert.alert('Usuário ou Senha estão incorretos!');
-
                         }
                         }
                     />
