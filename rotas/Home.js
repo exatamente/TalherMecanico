@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import {View, Text, Button, TextInput, Image, ScrollView} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
-import carro from '../componentes/carro'
+import Carro from '../componentes/Carro'
 
 class Home extends Component{
 
     constructor(props) {
         super(props);
+        this.add = false;
         this.before = {
             marca: '',
             ano: '',
@@ -16,8 +17,10 @@ class Home extends Component{
             mecanico: '',
             data: ''
         };
-        this.state = {carros: []}
+        this.state = {carros: []};
         this.adicionaCarro = this.adicionaCarro.bind(this);
+        this.edita = this.edita.bind(this);
+        this.deleta = this.deleta.bind(this);
     }
     adicionaCarro(){
         const { navigation } = this.props;
@@ -33,6 +36,26 @@ class Home extends Component{
                 } ]});
     }
 
+    edita(indice){
+        let beforeCarro = this.state.carros[indice];
+        let carros = [...this.state.carros];
+        carros.splice(indice, 1);
+        this.setState({carros: carros});
+        this.props.navigation.push('EditCar', beforeCarro);
+        console.log(this.add)
+    }
+
+    static setAdd(){
+        this.add = true;
+        console.log("chamou");
+    }
+
+    deleta(indice){
+        var carros = [...this.state.carros];
+        carros.splice(indice, 1);
+        this.setState({carros: carros});
+    }
+
     render(){
         const { navigation } = this.props;
         let carro = {
@@ -45,17 +68,19 @@ class Home extends Component{
             data: navigation.getParam('data','')
         };
 
-        if ( JSON.stringify(carro) !== JSON.stringify(this.before) ){
+        if ( JSON.stringify(carro) !== JSON.stringify(this.before) || this.add === true){
             this.adicionaCarro();
         }
+        this.add = false;
 
         this.before = carro;
 
-        //let n = this.state.carros.map((x,idx)=>{
-        //    return <carro indice={idx} key={idx} titulo={x} onDeletar={this.adicionaCarro}></carro>
-        //});
+        let n = this.state.carros.map((obj,idx)=>{
+            return <Carro indice={idx} key={idx} marca={obj.marca} ano={obj.ano} placa={obj.placa} onEditar={this.edita}
+            onDeletar={this.deleta}/>
+        });
 
-        console.log(this.state);
+        //console.log(this.state);
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
             <View>
@@ -64,19 +89,9 @@ class Home extends Component{
                         title="Adicionar Carro" onPress={() => this.props.navigation.push('AddCar')}
                     />
                 </View>
-                <View>
-                <Text>
-                    marca:
-                    {JSON.stringify(navigation.getParam('marca', 'default value'))}
-                </Text>
-                <Text>
-                    nome:
-                    {JSON.stringify(navigation.getParam('nome', 'default value'))}
-                </Text>
-                </View>
-                {/*<ScrollView>*/}
-                {/*    {n}*/}
-                {/*</ScrollView>*/}
+                <ScrollView>
+                    {n}
+                </ScrollView>
             </View>
             </LinearGradient>
         )
@@ -84,9 +99,3 @@ class Home extends Component{
 }
 
 export default Home;
-
-/* <Button
-    title="Login"
-    onPress={() => this.props.navigation.push('Login')}
-/> */
-
