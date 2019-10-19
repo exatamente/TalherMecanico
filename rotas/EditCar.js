@@ -41,7 +41,6 @@ class EditCar extends Component {
                     <Button
                         title="Atualizar"
                         onPress={() => {
-                            Home.setAdd();
                             this.props.navigation.navigate('Home', {
                                 marca: this.state.marca,
                                 ano: this.state.ano,
