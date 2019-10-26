@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, Image, ScrollView, AsyncStorage} from 'react-native';
+import {View, Text, Button, TextInput, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import Carro from '../componentes/Carro'
 import styles from "../stylesheets/homeStyle";
@@ -60,6 +60,8 @@ class Home extends Component{
 
     render(){
 
+        let ScreenHeight = Dimensions.get("window").height;
+
         let n = this.state.carros.map((obj,idx)=>{
             return <Carro indice={idx} key={idx} marca={obj.marca} ano={obj.ano} placa={obj.placa} onEditar={this.edita}
                           onDeletar={this.deleta}/>
@@ -67,18 +69,20 @@ class Home extends Component{
 
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
-                <View>
-                    <View style={{margin: 30}}>
-                        <Text style={styles.Title}>Bem-vindo a Home</Text>
-                        <Button
-                            color={'#eea849'}
-                            title="Adicionar Carro" onPress={this.adicionar}
-                        />
+                <View style={{height: ScreenHeight}}>
+                    <View style={{paddingLeft:10}}>
+                        <Text style={{paddingTop: 40, color: 'white', fontSize: 20, textAlign: 'center', paddingBottom: 15}}>Marca - Ano / Placa</Text>
                     </View>
                     <ScrollView>
                         {n}
                     </ScrollView>
-                    <View style={{paddingBottom: 1500}}></View>
+                    <View style={{alignItems: 'center'}}>
+                        <View style={{position: 'absolute', bottom: 45, width: 240}}>
+                            <TouchableOpacity style={styles.Button} activeOpacity = {.5} onPress={this.adicionar}>
+                                <Text>Adicionar</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
                 </View>
             </LinearGradient>
         )

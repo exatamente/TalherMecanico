@@ -5,8 +5,8 @@ export default StyleSheet.create({
         borderBottomColor: 'white',
         borderBottomWidth: 2,
         fontSize: 15,
-        textAlign: 'center',
-        color: 'white'
+        color: 'white',
+        backgroundColor: '#eee'
     },
 
 

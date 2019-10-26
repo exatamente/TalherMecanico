@@ -27,11 +27,15 @@ class carro extends Component {
 
     render() {
         return (
-            <View style={{flexDirection: 'row'}}>
-                <Text style={{flexGrow: 1}}>{this.props.marca} - {this.props.ano}</Text>
-                <Text style={{flexGrow: 1}}>{this.props.placa}</Text>
-                <Button onPress={this.editar} title={"Editar"}/>
-                <Button onPress={this.deletar} title={"Deletar"}/>
+            <View style={{paddingLeft: 10, flexDirection: 'row'}}>
+                <Text style={{flexGrow: 1, color: 'white'}}>{this.props.marca} - {this.props.ano}</Text>
+                <Text style={{flexGrow: 1, color: 'white'}}>{this.props.placa}</Text>
+                <View style={{marginRight: 10}}>
+                    <Button onPress={this.editar} title={"E"}/>
+                </View>
+                <View style={{marginRight: 10}}>
+                    <Button onPress={this.deletar} title={"D"}/>
+                </View>
             </View>
         );
     }
