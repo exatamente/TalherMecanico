@@ -3,12 +3,14 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Login from './rotas/Login';
 import Home from './rotas/Home';
 import AddCar from './rotas/AddCar';
+import EditCar from './rotas/EditCar';
 
 /* Objeto que mapeia as paginas */
 let navegador = createStackNavigator({
     Login: {screen: Login},
     Home: {screen: Home},
-    AddCar: {screen: AddCar}
+    AddCar: {screen: AddCar},
+    EditCar: {screen: EditCar}
 },{
     headerMode: "none"
 });

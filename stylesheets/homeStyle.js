@@ -10,6 +10,13 @@ export default StyleSheet.create({
         margin: 55,
         paddingTop: 25,
         marginTop: 0
+    },
+
+    Title: {
+        textAlign: 'center',
+        fontSize: 22,
+        color: 'white',
+        paddingBottom: 15
     }
 
 });

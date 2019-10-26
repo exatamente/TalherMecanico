@@ -8,16 +8,35 @@ class EditCar extends Component {
     constructor(props){
         super(props);
         const { navigation } = this.props;
-        this.state = {
-            marca: navigation.getParam('marca',''),
-            ano: navigation.getParam('ano',''),
-            placa: navigation.getParam('placa',''),
-            cor: navigation.getParam('cor',''),
-            proprietario: navigation.getParam('proprietario',''),
-            mecanico: navigation.getParam('mecanico',''),
-            data: navigation.getParam('data','')
 
-        }
+        this.carro = navigation.getParam("carro", "");
+
+        this.state = {
+            marca: this.carro.marca,
+            ano: this.carro.ano,
+            placa: this.carro.placa,
+            cor: this.carro.cor,
+            proprietario: this.carro.proprietario,
+            mecanico: this.carro.mecanico,
+            data: this.carro.data
+        };
+
+        this.finaliza = this.finaliza.bind(this);
+    }
+
+    finaliza() {
+        const { navigation } = this.props;
+        let newCar = {
+            marca: this.state.marca,
+            ano: this.state.ano,
+            placa: this.state.placa,
+            cor: this.state.cor,
+            proprietario: this.state.proprietario,
+            mecanico: this.state.mecanico,
+            data: this.state.data
+        };
+        navigation.getParam("continuaEditar")(newCar);
+        navigation.navigate('Home');
     }
 
 
@@ -28,30 +47,26 @@ class EditCar extends Component {
                 <View>
                     <View>
                         <Text style={{fontSize: 25, margin: 20, textAlign: 'center', color: 'white'}}>
-                            Editar Carro
+                            Edita Carro
                         </Text>
-                        <TextInput onChangeText={(text) => this.setState({marca: text})} placeholder={'Marca'} value={this.state.marca} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({ano: text})} placeholder={'Ano'} value={this.state.ano} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({placa: text})} placeholder={'Placa'} value={this.state.placa} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({cor: text})} placeholder={'Cor'} value={this.state.cor} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({proprietario: text})} placeholder={'Proprietário'} value={this.state.proprietario} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'} value={this.state.mecanico} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({data: text})} placeholder={'Data'} value={this.state.data} style={styles.Input}/>
+                        <TextInput onChangeText={(text) => this.setState({marca: text})} value={this.state.marca} placeholder={'Marca'}
+                                   style={styles.Input}/>
+                        <TextInput onChangeText={(text) => this.setState({ano: text})} value={this.state.ano} placeholder={'Ano'}
+                                   style={styles.Input}/>
+                        <TextInput onChangeText={(text) => this.setState({placa: text})} value={this.state.placa} placeholder={'Placa'}
+                                   style={styles.Input}/>
+                        <TextInput onChangeText={(text) => this.setState({cor: text})} value={this.state.cor} placeholder={'Cor'}
+                                   style={styles.Input}/>
+                        <TextInput onChangeText={(text) => this.setState({proprietario: text})} value={this.state.proprietario}
+                                   placeholder={'Proprietário'} style={styles.Input}/>
+                        <TextInput onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'} value={this.state.mecanico}
+                                   style={styles.Input}/>
+                        <TextInput onChangeText={(text) => this.setState({data: text})} placeholder={'Data'} value={this.state.data}
+                                   style={styles.Input}/>
                     </View>
                     <Button
                         title="Atualizar"
-                        onPress={() => {
-                            Home.setAdd();
-                            this.props.navigation.navigate('Home', {
-                                marca: this.state.marca,
-                                ano: this.state.ano,
-                                placa: this.state.placa,
-                                cor: this.state.cor,
-                                proprietario: this.state.proprietario,
-                                mecanico: this.state.mecanico,
-                                data: this.state.data
-                            });
-                        }}
+                        onPress={this.finaliza}
                     />
                 </View>
             </LinearGradient>

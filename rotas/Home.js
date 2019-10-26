@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, Image, ScrollView} from 'react-native';
+import {View, Text, Button, TextInput, Image, ScrollView, AsyncStorage} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import Carro from '../componentes/Carro'
+import styles from "../stylesheets/homeStyle";
 
 class Home extends Component{
 
@@ -18,37 +19,28 @@ class Home extends Component{
             data: ''
         };
         this.state = {carros: []};
-        this.adicionaCarro = this.adicionaCarro.bind(this);
         this.edita = this.edita.bind(this);
         this.deleta = this.deleta.bind(this);
+        this.adicionar= this.adicionar.bind(this);
+        this.continuaAdicionar = this.continuaAdicionar.bind(this);
+        this.continuaEditar = this.continuaEditar.bind(this);
     }
-    adicionaCarro(){
-        const { navigation } = this.props;
-        this.setState({carros: [...this.state.carros,
-                {
-                    marca: navigation.getParam('marca','default'),
-                    ano: navigation.getParam('ano','default'),
-                    placa: navigation.getParam('placa','default'),
-                    cor: navigation.getParam('cor','default'),
-                    proprietario: navigation.getParam('proprietario','default'),
-                    mecanico: navigation.getParam('mecanico','default'),
-                    data: navigation.getParam('data','default')
-                } ]});
-    }
+
 
     edita(indice){
-        let beforeCarro = this.state.carros[indice];
-        let carros = [...this.state.carros];
+        var carro = this.state.carros[indice];
+        this.props.navigation.push('EditCar', {carro: carro, continuaEditar: this.continuaEditar});
+        var carros = [...this.state.carros];
         carros.splice(indice, 1);
         this.setState({carros: carros});
-        this.props.navigation.push('EditCar', beforeCarro);
-        console.log(this.add)
     }
 
-    static setAdd(){
-        this.add = true;
-        console.log("chamou");
+
+    continuaEditar(editaCarro) {
+        var carros = [...this.state.carros];
+        this.setState({carros: [...carros, editaCarro]});
     }
+
 
     deleta(indice){
         var carros = [...this.state.carros];
@@ -56,43 +48,38 @@ class Home extends Component{
         this.setState({carros: carros});
     }
 
-    render(){
+    adicionar(){
         const { navigation } = this.props;
-        let carro = {
-            marca: navigation.getParam('marca',''),
-            ano: navigation.getParam('ano',''),
-            placa: navigation.getParam('placa',''),
-            cor: navigation.getParam('cor',''),
-            proprietario: navigation.getParam('proprietario',''),
-            mecanico: navigation.getParam('mecanico',''),
-            data: navigation.getParam('data','')
-        };
+        navigation.push('AddCar', {continua: this.continuaAdicionar});
+    }
 
-        if ( JSON.stringify(carro) !== JSON.stringify(this.before) || this.add === true){
-            this.adicionaCarro();
-        }
-        this.add = false;
+    continuaAdicionar(novoCarro){
+        var carros = [...this.state.carros];
+        this.setState({carros: [...carros, novoCarro]});
+    }
 
-        this.before = carro;
+    render(){
 
         let n = this.state.carros.map((obj,idx)=>{
             return <Carro indice={idx} key={idx} marca={obj.marca} ano={obj.ano} placa={obj.placa} onEditar={this.edita}
-            onDeletar={this.deleta}/>
+                          onDeletar={this.deleta}/>
         });
 
-        //console.log(this.state);
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
-            <View>
-                <View style={{margin: 30}}>
-                    <Button
-                        title="Adicionar Carro" onPress={() => this.props.navigation.push('AddCar')}
-                    />
+                <View>
+                    <View style={{margin: 30}}>
+                        <Text style={styles.Title}>Bem-vindo a Home</Text>
+                        <Button
+                            color={'#eea849'}
+                            title="Adicionar Carro" onPress={this.adicionar}
+                        />
+                    </View>
+                    <ScrollView>
+                        {n}
+                    </ScrollView>
+                    <View style={{paddingBottom: 1500}}></View>
                 </View>
-                <ScrollView>
-                    {n}
-                </ScrollView>
-            </View>
             </LinearGradient>
         )
     }

@@ -16,7 +16,7 @@ class Login extends Component{
                 <View style={styles.inputSection}>
                     <Image source={require('../img/logo.png')} />
 
-                    <Text style={styles.Title}> Iniciar Sessão: </Text>
+                    <Text style={styles.Title}>Talher Mecânico</Text>
 
                     <TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} onChangeText={(value) => this.setState({username: value})} />
 
