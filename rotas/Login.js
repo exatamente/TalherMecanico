@@ -3,7 +3,7 @@ import {Alert, View, Text, Button,TextInput, Image, StyleSheet, BackHandler, Sta
 import styles from '../stylesheets/loginStyle.js'
 import LinearGradient from "react-native-linear-gradient";
 import { NavigationActions, StackActions, withNavigationFocus } from 'react-navigation';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class Login extends Component{
     state = {
@@ -56,15 +56,16 @@ class Login extends Component{
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
 				<StatusBar backgroundColor="#eea849" />
+			<KeyboardAwareScrollView>
             <View>
                 <View style={styles.inputSection}>
 					<Image source={require('../img/logo.png')} />
+						<Text style={styles.Title}>Talher Mecânico</Text>
 
-                    <Text style={styles.Title}>Talher Mecânico</Text>
+						<TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} onChangeText={(value) => this.setState({username: value})} />
 
-                    <TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} onChangeText={(value) => this.setState({username: value})} />
-
-                    <TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={styles.Password} onChangeText={(value) => this.setState({password: value})} />
+						<TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={styles.Password} onChangeText={(value) => this.setState({password: value})} />
+					
                 </View>
                 <View style={styles.Button}>
                     <Button
@@ -88,6 +89,7 @@ class Login extends Component{
                     />
                 </View>
             </View>
+			</KeyboardAwareScrollView>
             </LinearGradient>
         )
     }
