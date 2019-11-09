@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Image, Alert, Dimensions, StatusBar, KeyboardAvoidingView, ALert} from 'react-native';
+import {View, Text, TextInput, Image, Alert, Dimensions, StatusBar, ALert} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import styles from '../stylesheets/AddStyle.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
