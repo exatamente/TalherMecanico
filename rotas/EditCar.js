@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Image,Alert, TouchableOpacity, Dimensions} from 'react-native';
+import {View, Text, TextInput, Image,Alert, TouchableOpacity, Dimensions, BackHandler} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import styles from '../stylesheets/editStyle.js';
 import Home from './Home';
@@ -41,6 +41,21 @@ class EditCar extends Component {
         navigation.getParam("continuaEditar")(newCar);
         navigation.navigate('Home');
     }
+	
+		componentDidMount() {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	handleBackButton = () => {
+	if (this.props.navigation.isFocused()) {
+		this.finaliza();
+		return true;
+	}
+	};
 
 
     render() {
