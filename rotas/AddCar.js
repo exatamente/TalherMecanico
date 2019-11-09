@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Image, Alert, Dimensions, StatusBar, KeyboardAvoidingView} from 'react-native';
+import {View, Text, TextInput, Image, Alert, Dimensions, StatusBar, KeyboardAvoidingView, ALert} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import styles from '../stylesheets/AddStyle.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -23,19 +23,24 @@ class AddCar extends Component {
     }
 
     finaliza() {
-        const { navigation } = this.props;
-        var novoCarro = {
-            marca: this.state.marca,
-            ano: this.state.ano,
-            placa: this.state.placa,
-            cor: this.state.cor,
-            proprietario: this.state.proprietario,
-            mecanico: this.state.mecanico,
-            data: this.state.data
-        };
+		if (!this.state.marca || !this.state.ano || !this.state.placa){
+			Alert.alert("Atenção!","Os campos Marca/Ano/Placa são Obrigatórios.");
+		}
+		else{
+			const { navigation } = this.props;
+			var novoCarro = {
+				marca: this.state.marca,
+				ano: this.state.ano,
+				placa: this.state.placa,
+				cor: this.state.cor,
+				proprietario: this.state.proprietario,
+				mecanico: this.state.mecanico,
+				data: this.state.data
+			};
 
-        navigation.getParam("continua")(novoCarro);
-        navigation.navigate('Home');
+			navigation.getParam("continua")(novoCarro);
+			navigation.navigate('Home');
+		}
     }
 
     render() {

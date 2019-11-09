@@ -28,18 +28,41 @@ class EditCar extends Component {
     }
 
     finaliza() {
-        const { navigation } = this.props;
-        let newCar = {
-            marca: this.state.marca,
-            ano: this.state.ano,
-            placa: this.state.placa,
-            cor: this.state.cor,
-            proprietario: this.state.proprietario,
-            mecanico: this.state.mecanico,
-            data: this.state.data
-        };
-        navigation.getParam("continuaEditar")(newCar);
-        navigation.navigate('Home');
+		const { navigation } = this.props;
+		if (!this.state.marca || !this.state.ano || !this.state.placa){
+			Alert.alert("Atenção!","Os campos Marca/Ano/Placa são Obrigatórios. Caso queira remover este carro, clique em 'Remover'.",
+				[
+					{
+					text: 'Cancelar',
+					onPress: () => console.log('Cancelado'),
+					style: 'cancel'
+					},
+					{
+					text: 'Remover',
+					onPress: () => navigation.navigate('Home')
+					}
+				],
+				
+				{
+				  cancelable: false
+				}
+			
+			);
+		}
+		else{
+			const { navigation } = this.props;
+			let newCar = {
+				marca: this.state.marca,
+				ano: this.state.ano,
+				placa: this.state.placa,
+				cor: this.state.cor,
+				proprietario: this.state.proprietario,
+				mecanico: this.state.mecanico,
+				data: this.state.data
+			};
+			navigation.getParam("continuaEditar")(newCar);
+			navigation.navigate('Home');
+		}
     }
 	
 	componentDidMount() {

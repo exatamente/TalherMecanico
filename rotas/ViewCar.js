@@ -51,19 +51,19 @@ class ViewCar extends Component {
                 <StatusBar backgroundColor="#eea849" />
                 <View style={{height: ScreenHeight}}>
 					<View style={styles.Form}>
-                        <TextInput editable={false} onChangeText={(text) => this.setState({marca: text})} value={this.state.marca} placeholder={'Marca'}
+                        <TextInput editable={false} onChangeText={(text) => this.setState({marca: text})} value={'Marca: '+ this.state.marca} placeholder={'Marca'}
                                    style={styles.Input}/>
-                        <TextInput editable={false} onChangeText={(text) => this.setState({ano: text})} value={this.state.ano} placeholder={'Ano'}
+                        <TextInput editable={false} onChangeText={(text) => this.setState({ano: text})} value={'Ano: ' + this.state.ano} placeholder={'Ano'}
                                    style={styles.Input}/>
-                        <TextInput editable={false} onChangeText={(text) => this.setState({placa: text})} value={this.state.placa} placeholder={'Placa'}
+                        <TextInput editable={false} onChangeText={(text) => this.setState({placa: text})} value={'Placa: ' + this.state.placa} placeholder={'Placa'}
                                    style={styles.Input}/>
-                        <TextInput editable={false} onChangeText={(text) => this.setState({cor: text})} value={this.state.cor} placeholder={'Cor'}
+                        <TextInput editable={false} onChangeText={(text) => this.setState({cor: text})} value={'Cor: ' + this.state.cor} placeholder={'Cor'}
                                    style={styles.Input}/>
-                        <TextInput editable={false} onChangeText={(text) => this.setState({proprietario: text})} value={this.state.proprietario}
+                        <TextInput editable={false} onChangeText={(text) => this.setState({proprietario: text})} value={'Proprietário: ' + this.state.proprietario}
                                    placeholder={'Proprietário'} style={styles.Input}/>
-                        <TextInput editable={false} onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'} value={this.state.mecanico}
+                        <TextInput editable={false} onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'} value={'Mecânico: ' + this.state.mecanico}
                                    style={styles.Input}/>
-                        <TextInput editable={false} onChangeText={(text) => this.setState({data: text})} placeholder={'Data'} value={this.state.data}
+                        <TextInput editable={false} onChangeText={(text) => this.setState({data: text})} placeholder={'Data'} value={'Data: ' + this.state.data}
                                    style={styles.Input}/>
                     </View>
 				</View>

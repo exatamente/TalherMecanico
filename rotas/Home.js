@@ -116,7 +116,7 @@ class Home extends Component{
             <LinearGradient colors={['#e35d5b', '#e53935']}>
                 <StatusBar backgroundColor="#eea849" />
                 <View style={{height: ScreenHeight}}>
-                    <ScrollView>
+                    <ScrollView contentContainerStyle={{paddingBottom: 70}}>
                         {n}
                     </ScrollView>
                     <View style={{alignItems: 'center'}}>
