@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, Image, ScrollView, Dimensions, TouchableOpacity, BackHandler, Alert } from 'react-native';
+import {View, Text, Button, TextInput, Image, ScrollView, Dimensions, TouchableOpacity, BackHandler, Alert, StatusBar } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import Carro from '../componentes/Carro'
 import styles from "../stylesheets/homeStyle";
@@ -108,6 +108,7 @@ class Home extends Component{
 		
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
+                <StatusBar backgroundColor="#eea849" />
                 <View style={{height: ScreenHeight}}>
                     <ScrollView>
                         {n}

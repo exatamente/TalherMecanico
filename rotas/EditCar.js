@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Image,Alert, TouchableOpacity, Dimensions, BackHandler} from 'react-native';
+import {View, Text, TextInput, Image,Alert, TouchableOpacity, Dimensions, BackHandler, StatusBar} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import styles from '../stylesheets/editStyle.js';
 import Home from './Home';
@@ -63,6 +63,7 @@ class EditCar extends Component {
 		let ScreenHeight = Dimensions.get("window").height;
         return (
             <LinearGradient colors={['#e35d5b', '#e53935']}>
+                <StatusBar backgroundColor="#eea849" />
                 <View style={{height: ScreenHeight}}>
 					<View style={styles.Form}>
                         <TextInput onChangeText={(text) => this.setState({marca: text})} value={this.state.marca} placeholder={'Marca'}

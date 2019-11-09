@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Image, Alert, Dimensions} from 'react-native';
+import {View, Text, TextInput, Image, Alert, Dimensions, StatusBar} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import styles from '../stylesheets/AddStyle.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -42,6 +42,7 @@ class AddCar extends Component {
 		let ScreenHeight = Dimensions.get("window").height;
         return (
             <LinearGradient colors={['#e35d5b', '#e53935']}>
+                <StatusBar backgroundColor="#eea849" />
                 <View style={{height: ScreenHeight}}>
 					<View style={styles.Form}>
                         <TextInput onChangeText={(text) => this.setState({marca: text})} placeholder={'Marca'}

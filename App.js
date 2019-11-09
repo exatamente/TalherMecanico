@@ -5,7 +5,6 @@ import Home from './rotas/Home';
 import AddCar from './rotas/AddCar';
 import EditCar from './rotas/EditCar';
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 /* Objeto que mapeia as paginas */
@@ -18,8 +17,6 @@ let navegador = createStackNavigator({
     EditCar: {screen: EditCar, navigationOptions: {title: 'Visualizando Carro',  headerLeft: (
 		<Icon style={{paddingLeft: 15, paddingTop: 5, alignItems: 'center'}} name="search" size={30} color="black"/>
       ),}}
-},{
-    
 });
 
 /* Aplicativo transformado em react native */

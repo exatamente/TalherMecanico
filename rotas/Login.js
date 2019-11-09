@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, View, Text, Button,TextInput, Image, StyleSheet, BackHandler} from 'react-native';
+import {Alert, View, Text, Button,TextInput, Image, StyleSheet, BackHandler, StatusBar} from 'react-native';
 import styles from '../stylesheets/loginStyle.js'
 import LinearGradient from "react-native-linear-gradient";
 import { NavigationActions, StackActions, withNavigationFocus } from 'react-navigation';
@@ -58,9 +58,10 @@ class Login extends Component{
     render(){
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
+				<StatusBar backgroundColor="#eea849" />
             <View>
                 <View style={styles.inputSection}>
-                    <Image source={require('../img/logo.png')} />
+					<Image source={require('../img/logo.png')} />
 
                     <Text style={styles.Title}>Talher Mecânico</Text>
 
