@@ -54,36 +54,36 @@ class Login extends Component{
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
 			<StatusBar backgroundColor="#eea849" />
-			<KeyboardAwareScrollView>
-            <View>
-                <View style={styles.inputSection}>
-					<Image source={require('../img/logo.png')} />
-						<Text style={styles.Title}>Talher Mecânico</Text>
-						<TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} onChangeText={(value) => this.setState({username: value})} />
-						<TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={styles.Password} onChangeText={(value) => this.setState({password: value})} />
-                </View>
-                <View style={styles.Button}>
-                    <Button
-                        title="Login"
-                        color={'#eea849'}
-                        onPress={() =>
-							{
-								if((this.state.username == 'admin')  && (this.state.password == 'admin')){
-									const resetAction = StackActions.reset({
-									index: 0,
-										actions: [NavigationActions.navigate({ routeName: 'Home' })],
-									});
-									this.props.navigation.dispatch(resetAction); 
-									
-									return;
+				<KeyboardAwareScrollView>
+					<View>
+						<View style={styles.inputSection}>
+							<Image source={require('../img/logo.png')} />
+								<Text style={styles.Title}>Talher Mecânico</Text>
+								<TextInput  key={'Usuario'} placeholder={'Usuário'} style={styles.Username} onChangeText={(value) => this.setState({username: value})} />
+								<TextInput key={'Senha'} secureTextEntry={true} placeholder={'Senha'} style={styles.Password} onChangeText={(value) => this.setState({password: value})} />
+						</View>
+						<View style={styles.Button}>
+							<Button
+								title="Login"
+								color={'#eea849'}
+								onPress={() =>
+									{
+										if((this.state.username == 'admin')  && (this.state.password == 'admin')){
+											const resetAction = StackActions.reset({
+											index: 0,
+												actions: [NavigationActions.navigate({ routeName: 'Home' })],
+											});
+											this.props.navigation.dispatch(resetAction); 
+											
+											return;
+										}
+										Alert.alert('Usuário ou Senha estão incorretos!');
+									}
 								}
-								Alert.alert('Usuário ou Senha estão incorretos!');
-							}
-                        }
-                    />
-                </View>
-            </View>
-			</KeyboardAwareScrollView>
+							/>
+						</View>
+					</View>
+				</KeyboardAwareScrollView>
             </LinearGradient>
         )
     }
