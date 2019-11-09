@@ -7,8 +7,8 @@ import { NavigationActions, StackActions, withNavigationFocus } from 'react-navi
 
 class Login extends Component{
     state = {
-        username: 'admin',
-        password: 'admin'
+        username: 'NULL',
+        password: 'NULL'
     };
 	
 	reset(){
