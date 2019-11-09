@@ -5,6 +5,13 @@ export default StyleSheet.create({
         paddingTop: 35,
         alignItems: 'center'
     },
+	
+	buttonView: {
+		position: 'absolute',
+		bottom: 95,
+		width: 120,
+		right: -10 
+	},
 
     Button: {
         marginRight:40,
@@ -23,6 +30,17 @@ export default StyleSheet.create({
         color: 'white',
         paddingBottom: 15
     },
-
+	
+	Empty: {
+		paddingTop: 15,
+		textAlign: 'center',
+		color: 'white',
+		fontSize: 17
+	},
+	
+	Icon: {
+		paddingTop: 16,
+		alignItems: 'center'
+	}
 
 });

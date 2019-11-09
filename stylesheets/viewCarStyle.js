@@ -14,7 +14,7 @@ export default StyleSheet.create({
 	Form: {
 		paddingLeft: 45,
 		paddingRight: 45,
-		paddingTop: 15
+		paddingTop: 35
 	},
 
 	Button: {
@@ -24,10 +24,7 @@ export default StyleSheet.create({
 		borderRadius: 8
 	},
 	
-	Icon: {
-		paddingTop: 2,
-		paddingRight: 10
-	}
+
 
 
 });

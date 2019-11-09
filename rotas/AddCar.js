@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, TextInput, Image, Alert, Dimensions, StatusBar} from 'react-native';
+import {View, Text, TextInput, Image, Alert, Dimensions, StatusBar, KeyboardAvoidingView} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import styles from '../stylesheets/AddStyle.js'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class AddCar extends Component {
     constructor(props) {
@@ -43,27 +44,30 @@ class AddCar extends Component {
         return (
             <LinearGradient colors={['#e35d5b', '#e53935']}>
                 <StatusBar backgroundColor="#eea849" />
-                <View style={{height: ScreenHeight}}>
-					<View style={styles.Form}>
-                        <TextInput onChangeText={(text) => this.setState({marca: text})} placeholder={'Marca'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({ano: text})} placeholder={'Ano'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({placa: text})} placeholder={'Placa'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({cor: text})} placeholder={'Cor'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({proprietario: text})}
-                                   placeholder={'Proprietário'} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({data: text})} placeholder={'Data'}
-                                   style={styles.Input}/>
-                    </View>
-					<View style={{alignItems: 'center'}}>
-						 <Button titleStyle={{color: 'white'}} buttonStyle={{backgroundColor:'#eea849', width: 310, height: 45, borderRadius: 30}} icon={ <Icon style={{paddingTop: 3,paddingRight: 10}} name="plus" size={23} color="black"/> } title={"Adicionar"} onPress={this.finaliza} />
+                <KeyboardAwareScrollView>
+					<View>
+						<View style={styles.Form}>
+							<TextInput onChangeText={(text) => this.setState({marca: text})} placeholder={'Marca'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({ano: text})} placeholder={'Ano'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({placa: text})} placeholder={'Placa'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({cor: text})} placeholder={'Cor'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({proprietario: text})}
+									   placeholder={'Proprietário'} style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({data: text})} placeholder={'Data'}
+									   style={styles.Input}/>
+						</View>
+					
+						<View style={{alignItems: 'center', paddingBottom: 25}}>
+							 <Button titleStyle={{color: 'white'}} buttonStyle={styles.Button} icon={ <Icon style={styles.Icon} name="plus" size={23} color="black"/> } title={"Adicionar"} onPress={this.finaliza} />
+						</View>
 					</View>
-                </View>
+				</KeyboardAwareScrollView>
             </LinearGradient>
         );
     }

@@ -5,7 +5,7 @@ import styles from '../stylesheets/editStyle.js';
 import Home from './Home';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 class EditCar extends Component {
     constructor(props){
@@ -42,7 +42,7 @@ class EditCar extends Component {
         navigation.navigate('Home');
     }
 	
-		componentDidMount() {
+	componentDidMount() {
 		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
 	}
 
@@ -64,27 +64,29 @@ class EditCar extends Component {
         return (
             <LinearGradient colors={['#e35d5b', '#e53935']}>
                 <StatusBar backgroundColor="#eea849" />
-                <View style={{height: ScreenHeight}}>
-					<View style={styles.Form}>
-                        <TextInput onChangeText={(text) => this.setState({marca: text})} value={this.state.marca} placeholder={'Marca'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({ano: text})} value={this.state.ano} placeholder={'Ano'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({placa: text})} value={this.state.placa} placeholder={'Placa'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({cor: text})} value={this.state.cor} placeholder={'Cor'}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({proprietario: text})} value={this.state.proprietario}
-                                   placeholder={'Proprietário'} style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'} value={this.state.mecanico}
-                                   style={styles.Input}/>
-                        <TextInput onChangeText={(text) => this.setState({data: text})} placeholder={'Data'} value={this.state.data}
-                                   style={styles.Input}/>
-                    </View>
-					<View style={{alignItems: 'center'}}>
-						 <Button titleStyle={{color: 'white'}} buttonStyle={{backgroundColor:'#eea849', width: 310, height: 45, borderRadius: 30}} icon={ <Icon style={{paddingRight: 10}} name="check" size={23} color="black"/> } title={"Finalizar"} onPress={this.finaliza} />
+                <KeyboardAwareScrollView>
+					<View>
+						<View style={styles.Form}>
+							<TextInput onChangeText={(text) => this.setState({marca: text})} value={this.state.marca} placeholder={'Marca'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({ano: text})} value={this.state.ano} placeholder={'Ano'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({placa: text})} value={this.state.placa} placeholder={'Placa'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({cor: text})} value={this.state.cor} placeholder={'Cor'}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({proprietario: text})} value={this.state.proprietario}
+									   placeholder={'Proprietário'} style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({mecanico: text})} placeholder={'Mecânico'} value={this.state.mecanico}
+									   style={styles.Input}/>
+							<TextInput onChangeText={(text) => this.setState({data: text})} placeholder={'Data'} value={this.state.data}
+									   style={styles.Input}/>
+						</View>
+						<View style={{alignItems: 'center', paddingBottom: 30}}>
+							 <Button titleStyle={{color: 'white'}} buttonStyle={styles.Button} icon={ <Icon style={styles.Icon} name="check" size={23} color="black"/> } title={"Finalizar"} onPress={this.finaliza} />
+						</View>
 					</View>
-				</View>
+				</KeyboardAwareScrollView>
             </LinearGradient>
         );
     }

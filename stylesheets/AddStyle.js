@@ -7,15 +7,26 @@ export default StyleSheet.create({
         backgroundColor: '#eee',
 		marginBottom: 12,
 		textAlign: 'center',
-		borderRadius: 35,
+		borderRadius: 8,
 		
     },
 	
 	Form: {
-		paddingLeft: 25,
-		paddingRight: 25,
+		paddingLeft: 45,
+		paddingRight: 45,
 		paddingTop: 15
 	},
 
+	Button: {
+		backgroundColor:'#eea849',
+		width: 270,
+		height: 45,
+		borderRadius: 8
+	},
+	
+	Icon: {
+		paddingTop: 4,
+		paddingRight: 10
+	}
 
 });

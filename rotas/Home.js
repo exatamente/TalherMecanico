@@ -23,6 +23,7 @@ class Home extends Component{
         this.state = {carros: []};
         this.edita = this.edita.bind(this);
         this.deleta = this.deleta.bind(this);
+		this.visualiza = this.visualiza.bind(this);
         this.adicionar= this.adicionar.bind(this);
         this.continuaAdicionar = this.continuaAdicionar.bind(this);
         this.continuaEditar = this.continuaEditar.bind(this);
@@ -36,6 +37,12 @@ class Home extends Component{
         this.setState({carros: carros});
     }
 
+    visualiza(indice){
+        var carro = this.state.carros[indice];
+        this.props.navigation.push('ViewCar', {carro: carro, continuaEditar: this.continuaEditar});
+        var carros = [...this.state.carros];
+        this.setState({carros: carros});
+    }
 
     continuaEditar(editaCarro) {
         var carros = [...this.state.carros];
@@ -68,27 +75,27 @@ class Home extends Component{
 	}
 
 	handleBackButton = () => {
-	if (this.props.navigation.isFocused()) {
-	Alert.alert(
-	'Talher Mecânico',
-	'Você tem certeza que deseja sair do Aplicativo?',
-	[
-	  {
-		text: 'Cancelar',
-		onPress: () => console.log('Cancel Pressed'),
-		style: 'cancel'
-	  },
-	  {
-		text: 'Sim',
-		onPress: () => BackHandler.exitApp()
-	  }
-	],
-	{
-	  cancelable: false
-	}
-	);
-	return true;
-	}
+		if (this.props.navigation.isFocused()) {
+			Alert.alert('Talher Mecânico','Você tem certeza que deseja sair do Aplicativo?',
+				[
+					{
+					text: 'Cancelar',
+					onPress: () => console.log('Cancel Pressed'),
+					style: 'cancel'
+					},
+					{
+					text: 'Sim',
+					onPress: () => BackHandler.exitApp()
+					}
+				],
+				
+				{
+				  cancelable: false
+				}
+			
+			);
+			return true;
+		}
 	};
 
 	
@@ -98,13 +105,12 @@ class Home extends Component{
 
         let n = this.state.carros.map((obj,idx)=>{
             return <Carro indice={idx} key={idx} marca={obj.marca} ano={obj.ano} placa={obj.placa} onEditar={this.edita}
-                          onDeletar={this.deleta}/>
+                          onDeletar={this.deleta} onVisualizar={this.visualiza}/>
         });
 		
 		if (!n.length) {
-			n = <Text style={{paddingTop: 15, textAlign: 'center', color: 'white', fontSize: 17}}>A lista de carros se encontra vazia!</Text>;
+			n = <Text style={styles.Empty}>A lista de carros se encontra vazia!</Text>;
 		}
-	
 		
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
@@ -114,9 +120,9 @@ class Home extends Component{
                         {n}
                     </ScrollView>
                     <View style={{alignItems: 'center'}}>
-                        <View style={{position: 'absolute', bottom: 95, width: 120, right: -10 }}>
+                        <View style={styles.buttonView}>
                             <TouchableOpacity style={styles.Button} activeOpacity = {.5} onPress={this.adicionar}>
-                                <Icon style={{paddingTop: 16, alignItems: 'center'}} name="plus" size={30} color="white"/>
+                                <Icon style={styles.Icon} name="plus" size={30} color="white"/>
                             </TouchableOpacity>
                         </View>
                     </View>

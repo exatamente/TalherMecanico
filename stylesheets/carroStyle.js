@@ -18,13 +18,24 @@ export default StyleSheet.create({
     },
 
     Edit: {
-    backgroundColor: '#3390FF',
+    backgroundColor: 'green',
 	width: 35,
 	height: 35,
    	borderRadius: 5,
 	alignItems: 'center',
 	borderWidth:1,
 	borderColor: 'white'
+    },
+	
+    View: {
+    backgroundColor:'#6498ed',
+	width: 35,
+	height: 35,
+   	borderRadius: 5,
+	alignItems: 'center',
+	borderWidth:1,
+	borderColor: 'white',
+	marginLeft: 5, 
     },
 	
 	Title: {

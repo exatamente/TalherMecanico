@@ -12,15 +12,10 @@ class Login extends Component{
     };
 	
 	reset(){
-    return this.props
-               .navigation
-               .dispatch(NavigationActions.reset(
-                 {
-                    index: 0,
-                    actions: [
-                      NavigationActions.navigate({ routeName: 'Home'})
-                    ]
-                  }));
+		return this.props.navigation.dispatch(NavigationActions.reset({
+			index: 0,
+			actions: [NavigationActions.navigate({ routeName: 'Home'})]
+		}));
 	}	
 	
 	componentDidMount() {
@@ -32,25 +27,27 @@ class Login extends Component{
 	}
 
 	handleBackButton = () => {
-	  Alert.alert(
-		'Talher Mecânico',
-		'Você tem certeza que deseja sair do Aplicativo?',
-		[
-		  {
-			text: 'Cancelar',
-			onPress: () => console.log('Cancel Pressed'),
-			style: 'cancel'
-		  },
-		  {
-			text: 'Sim',
-			onPress: () => BackHandler.exitApp()
-		  }
-		],
-		{
-		  cancelable: false
+		if (this.props.navigation.isFocused()) {
+			Alert.alert('Talher Mecânico','Você tem certeza que deseja sair do Aplicativo?',
+				[
+					{
+					text: 'Cancelar',
+					onPress: () => console.log('Cancel Pressed'),
+					style: 'cancel'
+					},
+					{
+					text: 'Sim',
+					onPress: () => BackHandler.exitApp()
+					}
+				],
+				
+				{
+				  cancelable: false
+				}
+			
+			);
+			return true;
 		}
-	  );
-	  return true;
 	};
 
 
@@ -74,19 +71,19 @@ class Login extends Component{
                         title="Login"
                         color={'#eea849'}
                         onPress={() =>
-                        {
-							if((this.state.username == 'admin')  && (this.state.password == 'admin')){
-								const resetAction = StackActions.reset({
-								index: 0,
-									actions: [NavigationActions.navigate({ routeName: 'Home' })],
-								});
-								this.props.navigation.dispatch(resetAction); 
-								
-                                return;
-                            }
+							{
+								if((this.state.username == 'admin')  && (this.state.password == 'admin')){
+									const resetAction = StackActions.reset({
+									index: 0,
+										actions: [NavigationActions.navigate({ routeName: 'Home' })],
+									});
+									this.props.navigation.dispatch(resetAction); 
+									
+									return;
+								}
 
-                            Alert.alert('Usuário ou Senha estão incorretos!');
-                        }
+								Alert.alert('Usuário ou Senha estão incorretos!');
+							}
                         }
                     />
                 </View>
