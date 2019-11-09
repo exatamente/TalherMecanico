@@ -9,13 +9,12 @@ export default StyleSheet.create({
     Button: {
         marginRight:40,
         marginLeft:40,
-        marginTop:10,
-        paddingTop:20,
-        paddingBottom:20,
-        backgroundColor:'#68a0cf',
-        borderRadius:10,
-        borderWidth: 1,
-        borderColor: '#fff'
+        backgroundColor:'#eea849',
+		width: 60,
+		height: 60,
+		borderRadius: 60/2,
+		alignItems: 'center',
+
     },
 
     Title: {

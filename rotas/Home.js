@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import {View, Text, Button, TextInput, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import {View, Text, Button, TextInput, Image, ScrollView, Dimensions, TouchableOpacity, BackHandler, Alert } from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
 import Carro from '../componentes/Carro'
 import styles from "../stylesheets/homeStyle";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { StackActions, NavigationActions, withNavigationFocus  } from 'react-navigation';
+
 
 class Home extends Component{
 
     constructor(props) {
         super(props);
-        this.add = false;
         this.before = {
             marca: '',
             ano: '',
@@ -25,7 +27,6 @@ class Home extends Component{
         this.continuaAdicionar = this.continuaAdicionar.bind(this);
         this.continuaEditar = this.continuaEditar.bind(this);
     }
-
 
     edita(indice){
         var carro = this.state.carros[indice];
@@ -57,7 +58,40 @@ class Home extends Component{
         var carros = [...this.state.carros];
         this.setState({carros: [...carros, novoCarro]});
     }
+	
+	componentDidMount() {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+	}
 
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	handleBackButton = () => {
+	if (this.props.navigation.isFocused()) {
+	Alert.alert(
+	'Talher Mecânico',
+	'Você tem certeza que deseja sair do Aplicativo?',
+	[
+	  {
+		text: 'Cancelar',
+		onPress: () => console.log('Cancel Pressed'),
+		style: 'cancel'
+	  },
+	  {
+		text: 'Sim',
+		onPress: () => BackHandler.exitApp()
+	  }
+	],
+	{
+	  cancelable: false
+	}
+	);
+	return true;
+	}
+	};
+
+	
     render(){
 
         let ScreenHeight = Dimensions.get("window").height;
@@ -66,20 +100,22 @@ class Home extends Component{
             return <Carro indice={idx} key={idx} marca={obj.marca} ano={obj.ano} placa={obj.placa} onEditar={this.edita}
                           onDeletar={this.deleta}/>
         });
-
+		
+		if (!n.length) {
+			n = <Text style={{paddingTop: 15, textAlign: 'center', color: 'white', fontSize: 17}}>A lista de carros se encontra vazia!</Text>;
+		}
+	
+		
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
                 <View style={{height: ScreenHeight}}>
-                    <View style={{paddingLeft:10}}>
-                        <Text style={{paddingTop: 40, color: 'white', fontSize: 20, textAlign: 'center', paddingBottom: 15}}>Marca - Ano / Placa</Text>
-                    </View>
                     <ScrollView>
                         {n}
                     </ScrollView>
                     <View style={{alignItems: 'center'}}>
-                        <View style={{position: 'absolute', bottom: 45, width: 240}}>
+                        <View style={{position: 'absolute', bottom: 95, width: 120, right: -10 }}>
                             <TouchableOpacity style={styles.Button} activeOpacity = {.5} onPress={this.adicionar}>
-                                <Text>Adicionar</Text>
+                                <Icon style={{paddingTop: 16, alignItems: 'center'}} name="plus" size={30} color="white"/>
                             </TouchableOpacity>
                         </View>
                     </View>

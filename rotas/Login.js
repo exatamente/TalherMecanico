@@ -1,14 +1,60 @@
 import React, {Component} from 'react';
-import {Alert, View, Text, Button,TextInput, Image, StyleSheet} from 'react-native';
+import {Alert, View, Text, Button,TextInput, Image, StyleSheet, BackHandler} from 'react-native';
 import styles from '../stylesheets/loginStyle.js'
 import LinearGradient from "react-native-linear-gradient";
+import { NavigationActions, StackActions, withNavigationFocus } from 'react-navigation';
+
 
 class Login extends Component{
     state = {
         username: 'admin',
         password: 'admin'
     };
+	
+	reset(){
+    return this.props
+               .navigation
+               .dispatch(NavigationActions.reset(
+                 {
+                    index: 0,
+                    actions: [
+                      NavigationActions.navigate({ routeName: 'Home'})
+                    ]
+                  }));
+	}	
+	
+	componentDidMount() {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+	}
 
+	componentWillUnmount() {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+	}
+
+	handleBackButton = () => {
+	  Alert.alert(
+		'Talher Mecânico',
+		'Você tem certeza que deseja sair do Aplicativo?',
+		[
+		  {
+			text: 'Cancelar',
+			onPress: () => console.log('Cancel Pressed'),
+			style: 'cancel'
+		  },
+		  {
+			text: 'Sim',
+			onPress: () => BackHandler.exitApp()
+		  }
+		],
+		{
+		  cancelable: false
+		}
+	  );
+	  return true;
+	};
+
+
+	
     render(){
         return(
             <LinearGradient colors={['#e35d5b', '#e53935']}>
@@ -28,8 +74,13 @@ class Login extends Component{
                         color={'#eea849'}
                         onPress={() =>
                         {
-                            if((this.state.username == 'admin')  && (this.state.password == 'admin')){
-                                this.props.navigation.push('Home')
+							if((this.state.username == 'admin')  && (this.state.password == 'admin')){
+								const resetAction = StackActions.reset({
+								index: 0,
+									actions: [NavigationActions.navigate({ routeName: 'Home' })],
+								});
+								this.props.navigation.dispatch(resetAction); 
+								
                                 return;
                             }
 

@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import{
     View,
     Text,
-    Button
+    Button,
+    TouchableOpacity
 } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import styles from "../stylesheets/carroStyle";
 
 class carro extends Component {
     constructor(props){
@@ -27,14 +30,25 @@ class carro extends Component {
 
     render() {
         return (
-            <View style={{paddingLeft: 10, flexDirection: 'row'}}>
-                <Text style={{flexGrow: 1, color: 'white'}}>{this.props.marca} - {this.props.ano}</Text>
-                <Text style={{flexGrow: 1, color: 'white'}}>{this.props.placa}</Text>
-                <View style={{marginRight: 10}}>
-                    <Button onPress={this.editar} title={"E"}/>
-                </View>
-                <View style={{marginRight: 10}}>
-                    <Button onPress={this.deletar} title={"D"}/>
+            <View style={styles.List}>
+				<View style={{flexDirection: 'row'}}>
+					<Text style={styles.Title}>Carro</Text>
+					<Text style={styles.Title}>Ano</Text>
+					<Text style={styles.Title}>Placa</Text>
+				</View>
+				<View style={{flexDirection: 'row'}}>
+					<Text style={styles.Text}>{this.props.marca}</Text>
+					<Text style={styles.Text}>{this.props.ano}</Text>
+					<Text style={styles.Text}>{this.props.placa}</Text>
+				</View>
+                <View style={{marginTop: 5, marginRight: 10, flexDirection: 'row',}}>
+                	<TouchableOpacity style={styles.Edit} activeOpacity = {.5} onPress={this.editar}>
+                                <Icon style={{paddingRight: 1, paddingTop: 6, alignItems: 'center'}} name="pencil" size={23} color="white"/>
+                        </TouchableOpacity>
+
+                	<TouchableOpacity style={styles.Remove} activeOpacity = {.5} onPress={this.deletar}>
+                                <Icon style={{paddingRight: 1, paddingTop: 6, alignItems: 'center'}} name="trash" size={23} color="white"/>
+                        </TouchableOpacity>
                 </View>
             </View>
         );

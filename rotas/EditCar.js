@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
-import {View, Text, Button,TextInput, Image,Alert} from 'react-native';
+import {View, Text, TextInput, Image,Alert, TouchableOpacity, Dimensions} from 'react-native';
 import LinearGradient from "react-native-linear-gradient";
-import styles from '../stylesheets/AddStyle.js';
-import Home from './Home'
+import styles from '../stylesheets/editStyle.js';
+import Home from './Home';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Button } from 'react-native-elements';
+
 
 class EditCar extends Component {
     constructor(props){
@@ -42,13 +45,11 @@ class EditCar extends Component {
 
     render() {
         const { navigation } = this.props;
+		let ScreenHeight = Dimensions.get("window").height;
         return (
             <LinearGradient colors={['#e35d5b', '#e53935']}>
-                <View>
-                    <View>
-                        <Text style={{fontSize: 25, margin: 20, textAlign: 'center', color: 'white'}}>
-                            Edita Carro
-                        </Text>
+                <View style={{height: ScreenHeight}}>
+					<View style={styles.Form}>
                         <TextInput onChangeText={(text) => this.setState({marca: text})} value={this.state.marca} placeholder={'Marca'}
                                    style={styles.Input}/>
                         <TextInput onChangeText={(text) => this.setState({ano: text})} value={this.state.ano} placeholder={'Ano'}
@@ -64,11 +65,10 @@ class EditCar extends Component {
                         <TextInput onChangeText={(text) => this.setState({data: text})} placeholder={'Data'} value={this.state.data}
                                    style={styles.Input}/>
                     </View>
-                    <Button
-                        title="Atualizar"
-                        onPress={this.finaliza}
-                    />
-                </View>
+					<View style={{alignItems: 'center'}}>
+						 <Button titleStyle={{color: 'white'}} buttonStyle={{backgroundColor:'#eea849', width: 310, height: 45, borderRadius: 30}} icon={ <Icon style={{paddingRight: 10}} name="check" size={23} color="black"/> } title={"Finalizar"} onPress={this.finaliza} />
+					</View>
+				</View>
             </LinearGradient>
         );
     }
