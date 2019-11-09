@@ -14,6 +14,12 @@ Objetivo:
   
   • Millestone II – Permitir o armazenamento dos dados usando um mecanismo de persistência de dados (Banco de Dados).
   
+  <h2>Bibliotecas Extras:</h2>
+  - npm install react-elements<br>
+  - npm install --save react-native-vector-icons<br>
+  - npm install react-native-linear-gradient --save<br>
+  - npm install react-native-keyboard-aware-scroll-view --save
+  
   <h1>Screenshots:</h1>
   
   ## Página de Login:
